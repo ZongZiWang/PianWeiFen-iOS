@@ -1,5 +1,5 @@
 //
-//  PWFViewController.h
+//  PWFTopicViewController.h
 //  PianWeiFen
 //
 //  Created by ZongZiWang on 13-1-4.
@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JASidePanelController.h"
 
-@interface PWFViewController : JASidePanelController
+@interface PWFTopicViewController : UITableViewController
+
+@property (strong, nonatomic) NSArray *topics;
 
 @end

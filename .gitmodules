@@ -1,0 +1,12 @@
+[submodule "EGOTableViewPullRefresh"]
+	path = EGOTableViewPullRefresh
+	url = https://github.com/enormego/EGOTableViewPullRefresh.git
+[submodule "weibo_ios_sdk_sso-oauth"]
+	path = weibo_ios_sdk_sso-oauth
+	url = https://github.com/mobileresearch/weibo_ios_sdk_sso-oauth.git
+[submodule "three20"]
+	path = three20
+	url = https://github.com/facebook/three20.git
+[submodule "JASidePanels"]
+	path = JASidePanels
+	url = https://github.com/gotosleep/JASidePanels.git

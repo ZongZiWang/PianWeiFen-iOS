@@ -18,6 +18,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+	
+	[self setLeftPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"TopicVC"]];
+	[self setCenterPanel:[self.storyboard instantiateViewControllerWithIdentifier:@"WeiboNavC"]];
 }
 
 - (void)didReceiveMemoryWarning
