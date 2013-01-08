@@ -8,10 +8,9 @@
 
 #import "PWFWeiboViewController.h"
 #import "EGORefreshTableHeaderView.h"
-#import "SinaWeibo.h"
 #import "Coffeepot.h"
 
-@interface PWFWeiboViewController () <EGORefreshTableHeaderDelegate, UITableViewDelegate, UITableViewDataSource, SinaWeiboDelegate>{
+@interface PWFWeiboViewController () <EGORefreshTableHeaderDelegate, SinaWeiboDelegate>{
 	
 	EGORefreshTableHeaderView *_refreshHeaderView;
 	
@@ -19,8 +18,6 @@
 	//  Putting it here for demo purposes
 	BOOL _reloading;
 }
-
-@property (strong, nonatomic) SinaWeibo *sinaWeibo;
 
 @end
 
@@ -60,6 +57,9 @@
 	self.title = @"偏微分";
 	
 	self.sinaWeibo = [[SinaWeibo alloc] initWithAppKey:@"4191846009" appSecret:@"dac536ad8a9fa3fcec8285d471ee10f8" appRedirectURI:@"https://api.weibo.com/oauth2/default.html" andDelegate:self];
+	self.sinaWeibo.userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"weibo_userID"];
+	self.sinaWeibo.accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"weibo_accessToken"];
+	self.sinaWeibo.expirationDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"weibo_expirationDate"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -147,17 +147,21 @@
 
 - (void)refreshWeibo
 {
-	if ([self.sinaWeibo isLoggedIn]) {
+	self.title = @"偏微分";
+	if ([self.sinaWeibo isAuthValid]) {
 		[[Coffeepot shared] requestWithMethodPath:@"wdm/statuses/home_timeline.php" params:@{@"access_token" : self.sinaWeibo.accessToken} success:^(CPRequest *request, id collection) {
 			if ([collection isKindOfClass:[NSDictionary class]]) {
 				self.weibos = collection[@"statuses"];
-				[self doneLoadingTableViewData];
+				[self.tableView reloadData];
 			}
+			[self doneLoadingTableViewData];
 		} error:^(CPRequest *request, NSError *error) {
 			NSLog(@"%@", error);
 			[self doneLoadingTableViewData];
 		}];
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	} else {
+		[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:.5];
 		[self.sinaWeibo logIn];
 	}
 }
@@ -180,6 +184,7 @@
 	//  model should call this when its done loading
 	_reloading = NO;
 	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	
 }
 
@@ -234,6 +239,10 @@
 - (void)sinaweiboDidLogIn:(SinaWeibo *)sinaweibo
 {
 	[self doneLoadingTableViewData];
+	[[NSUserDefaults standardUserDefaults] setObject:sinaweibo.userID forKey:@"weibo_userID"];
+	[[NSUserDefaults standardUserDefaults] setObject:sinaweibo.accessToken forKey:@"weibo_accessToken"];
+	[[NSUserDefaults standardUserDefaults] setObject:sinaweibo.expirationDate forKey:@"weibo_expirationDate"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

@@ -129,9 +129,7 @@
 		26EA4B441696B26F00C99D74 = {
 			isa = PBXGroup;
 			children = (
-				26EA4BC61696BD8F00C99D74 /* Objection-iOS.framework */,
 				26EA4BBB1696BC5000C99D74 /* CPConnect */,
-				26EA4BB91696B98600C99D74 /* QuartzCore.framework */,
 				26EA4BA21696B8CD00C99D74 /* EGOTableViewPullRefresh */,
 				26EA4B9B1696B84300C99D74 /* JASidePanels */,
 				26EA4B8E1696B82C00C99D74 /* Resources */,
@@ -153,6 +151,8 @@
 		26EA4B521696B26F00C99D74 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				26EA4BC61696BD8F00C99D74 /* Objection-iOS.framework */,
+				26EA4BB91696B98600C99D74 /* QuartzCore.framework */,
 				26EA4B531696B26F00C99D74 /* UIKit.framework */,
 				26EA4B551696B26F00C99D74 /* Foundation.framework */,
 				26EA4B571696B26F00C99D74 /* CoreGraphics.framework */,
@@ -496,6 +496,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PianWeiFen/PianWeiFen-Prefix.pch";
 				INFOPLIST_FILE = "PianWeiFen/PianWeiFen-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -511,6 +512,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PianWeiFen/PianWeiFen-Prefix.pch";
 				INFOPLIST_FILE = "PianWeiFen/PianWeiFen-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -535,6 +537,7 @@
 				26EA4B751696B26F00C99D74 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

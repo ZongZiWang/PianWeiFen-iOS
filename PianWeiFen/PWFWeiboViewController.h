@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SinaWeibo.h"
 
 @interface PWFWeiboViewController : UITableViewController
 
 @property (strong, nonatomic) NSArray *weibos;
+@property (strong, nonatomic) SinaWeibo *sinaWeibo;
+
+- (void)refreshWeibo;
 
 @end

@@ -10,7 +10,7 @@
 #import <Objection-iOS/Objection.h>
 
 
-static NSString *kCPSession = @"zongzi-mac.local:3000:session";
+static NSString *kCPSession = @"http://www.pkucada.org:8089/:session";
 static NSString *kCPSessionExpiredDate = @"zongzi-mac.local:3000:session_expired_date";
 
 @interface Coffeepot ()
